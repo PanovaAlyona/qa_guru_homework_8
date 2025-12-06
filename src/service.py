@@ -1,4 +1,5 @@
 from datetime import datetime
+
 from src.email import Email
 from src.status import Status
 
@@ -9,9 +10,9 @@ class EmailService:
         self.email = email
 
     @staticmethod
-    def send_date() -> str:
+    def add_send_date() -> str:
         # — возвращает текущую дату в формате YYYY-MM-DD.
-        return datetime.today().isoformat()
+        return datetime.today().strftime('%Y-%m-%d')
 
     def send_email(self):
         # — возвращает список отправленных писем
@@ -25,7 +26,7 @@ class EmailService:
                 sender=self.email.sender,
                 recipients=r,
                 status=self.email.status,
-                date=self.send_date(),
+                date=self.add_send_date(),
             )
             # если письмо имеет статус Status.READY, то изменить на Status.SENT
             if email.status == Status.READY:

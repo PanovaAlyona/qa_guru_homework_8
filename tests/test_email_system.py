@@ -476,3 +476,14 @@ def test_status_transitions():
     service = LoggingEmailService(email)
     sent = service.send_email()[0]
     assert sent.status == Status.SENT
+
+
+def test_add_short_body_one_space():
+    email = Email(
+        subject="Hi",
+        body=".",
+        sender=EmailAddress("a@a.com"),
+        recipients=EmailAddress("b@b.com"),
+    )
+    email.add_short_body(5)
+    assert email.short_body == "."

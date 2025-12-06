@@ -37,7 +37,7 @@ class Email:
         # 10 символов
         if len(self.body) > n:
             self.short_body = self.body[:n] + "..."
-        elif 1 < len(self.body) <= n:
+        elif 1 <= len(self.body) <= n:
             self.short_body = self.body
         return self
 
@@ -51,9 +51,9 @@ class Email:
         # что subject/body/sender/recipients не пустые). Если есть пустые поля — статус письма INVALID
         self.clean_data()
         if not (
-            self.is_valid_fields()
-            and len(self.recipients) > 0
-            and len(self.sender.address) > 0
+                self.is_valid_fields()
+                and len(self.recipients) > 0
+                and len(self.sender.address) > 0
         ):
             self.status = Status.INVALID
         else:
